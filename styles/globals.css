@@ -1,9 +1,15 @@
+:root {
+  --primary: #00bfa6;
+}
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: #f6f8fa;
 }
 
 a {
@@ -13,4 +19,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.ant-select-selector {
+  padding: 0 !important;
+}
+
+.ant-select-selection-search {
+  left: 0 !important;
 }
