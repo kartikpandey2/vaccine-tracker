@@ -1,0 +1,10 @@
+.resultCard {
+  border: 1px solid var(--primary);
+  box-shadow: none;
+  padding: 20px;
+}
+
+.centerName {
+  font-size: 18px;
+  font-weight: bold;
+}

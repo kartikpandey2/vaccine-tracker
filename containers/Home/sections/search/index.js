@@ -10,7 +10,7 @@ import styles from "./styles/index.module.css";
 
 class Search extends Component {
   state = {
-    activeButton: 2,
+    activeButton: 1,
     pincode: "",
     state: "",
     district: "",
@@ -116,7 +116,19 @@ class Search extends Component {
     );
   };
 
-  handleSearch = () => {};
+  handleSearch = () => {
+    const { pincode, district, date, activeButton } = this.state;
+
+    const query = { date };
+
+    if (activeButton === 1) {
+      query.pincode = pincode;
+    } else {
+      query.district = district;
+    }
+
+    this.props.onSearch(query);
+  };
 
   render() {
     const { activeButton } = this.state;

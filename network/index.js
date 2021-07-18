@@ -22,12 +22,27 @@ export const getDistricts = async (stateId) => {
   }
 };
 
-export const getResultsByPin = async () => {
+export const getResultsByPin = async (data) => {
   try {
-    const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=110001&date=31-03-2021`;
+    const { pincode, date } = data;
+
+    const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`;
     const resp = await axios.get(url);
 
-    return resp.data;
+    return resp.data.sessions;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getResultsByDistrict = async (data) => {
+  try {
+    const { districtId, date } = data;
+
+    const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=${districtId}&date=${date}`;
+    const resp = await axios.get(url);
+
+    return resp.data.sessions;
   } catch (err) {
     console.log(err);
   }
