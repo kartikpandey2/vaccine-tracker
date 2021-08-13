@@ -1,0 +1,23 @@
+.searchHeader {
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+  background: white;
+  align-items: center;
+  height: 48px;
+  border-radius: 24px;
+}
+
+.backButttonContainer {
+  flex-basis: 15%;
+  padding-left: 15px;
+}
+
+.childrenContainer {
+  flex-basis: 70%;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.filterContainer {
+  flex-basis: 15%;
+  padding-left: 10px;
+}

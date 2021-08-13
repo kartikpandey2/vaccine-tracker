@@ -17,10 +17,18 @@ class Search extends Component {
     date: "",
     allDistricts: [],
     allStates: [],
+    statesOptions: [],
+    districtOptions: [],
   };
 
+  allStatesList = [];
+  allDistrictList = [];
+
   async componentDidMount() {
-    await this.getStates();
+    const states = await this.getStates();
+
+    this.allStatesList = states;
+    this.setState({ allStates: states });
   }
 
   getStates = async () => {
@@ -32,7 +40,7 @@ class Search extends Component {
         name: s.state_name,
       }));
 
-      this.setState({ allStates });
+      return allStates;
     } catch (err) {}
   };
 
@@ -70,11 +78,32 @@ class Search extends Component {
   onStateSelect = async (stateId) => {
     const allDistricts = await this.getDistricts(stateId);
 
+    this.allDistrictList = allDistricts;
     this.setState({ state: stateId, allDistricts });
   };
 
   onDistrictSelect = (districtId) => {
     this.setState({ district: districtId });
+  };
+
+  onSelectSearch = (searchValue, label) => {
+    const { allStates, allDistricts } = this.state;
+
+    if (label === "State") {
+      const newStateOptions = allStates.filter((s) =>
+        s.name.includes(searchValue)
+      );
+
+      this.setState({ allStates: newStateOptions });
+    }
+
+    if (label === "District") {
+      const newDistrictOptions = allDistricts.filter((d) =>
+        d.name.includes(searchValue)
+      );
+
+      this.setState({ allDistricts: newDistrictOptions });
+    }
   };
 
   renderFindByPinForm = () => {
@@ -101,6 +130,7 @@ class Search extends Component {
         <InputContainer label="State" className={styles.inputContainer}>
           <Select
             showSearch={true}
+            onSearch={(value) => this.onSelectSearch(value, "State")}
             dataSource={allStates}
             onChange={this.onStateSelect}
           />
@@ -108,6 +138,7 @@ class Search extends Component {
         <InputContainer label="District" className={styles.inputContainer}>
           <Select
             showSearch={true}
+            onSearch={(value) => this.onSelectSearch(value, "District")}
             dataSource={allDistricts}
             onChange={this.onDistrictSelect}
           />

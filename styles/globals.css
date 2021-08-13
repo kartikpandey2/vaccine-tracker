@@ -9,7 +9,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   min-height: 100vh;
   min-width: 100vw;
-  background-color: #f6f8fa;
+  background-color: #f6f8fa !important;
   font-family: "Roboto", sans-serif;
 }
 
@@ -45,4 +45,7 @@ a {
 
 .fSpaceBetween {
   justify-content: space-between;
+}
+
+.mxw60 {
 }
